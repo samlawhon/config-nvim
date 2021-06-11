@@ -1,7 +1,30 @@
+" =============================================================================
+"                             Source ~/.vim/vimrc
+" =============================================================================
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 source ~/.vim/vimrc
 
+
+" =============================================================================
+"                              Plugin Management
+" =============================================================================
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'folke/lsp-colors.nvim'
+Plug 'psf/black'
+Plug 'JuliaEditorSupport/julia-vim'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-fugitive'
+
+call plug#end()
+
+
+" =============================================================================
+"                        Language Server Configuration
+" =============================================================================
 " Copied from the suggestions in the nvim-lspconfig README:
 " https://github.com/neovim/nvim-lspconfig
 lua << EOF
@@ -42,8 +65,18 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver" }
+local servers = { "pyright", "bashls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
+EOF
+
+" Diagnostics colors
+lua << EOF
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
+})
 EOF

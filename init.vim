@@ -10,7 +10,8 @@ source ~/.vim/vimrc
 "                              Plugin Management
 " =============================================================================
 call plug#begin('~/.config/nvim/plugged')
-
+Plug 'arcticicestudio/nord-vim'
+Plug 'neovim/nvim-lspconfig'
 Plug 'folke/lsp-colors.nvim'
 Plug 'psf/black'
 Plug 'JuliaEditorSupport/julia-vim'
@@ -18,8 +19,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
-
 call plug#end()
+
+" Overriding settings in my own plugins
+" -------------------------------------
+" Don't pop up the quickfix menu automatically - we have the language server
+let g:py_nolint=1
 
 
 " =============================================================================
@@ -73,10 +78,13 @@ EOF
 
 " Diagnostics colors
 lua << EOF
-require("lsp-colors").setup({
+require("lsp-colors").setup {
   Error = "#db4b4b",
   Warning = "#e0af68",
   Information = "#0db9d7",
   Hint = "#10B981"
-})
+}
 EOF
+
+" Iceberg doesn't support these colors, so we use gruvbox for nvim
+colo gruvbox

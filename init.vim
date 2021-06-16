@@ -4,13 +4,13 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 source ~/.vim/vimrc
+let g:python3_host_prog = '~/.nvim.venv/bin/python'
 
 
 " =============================================================================
 "                              Plugin Management
 " =============================================================================
 call plug#begin('~/.config/nvim/plugged')
-Plug 'arcticicestudio/nord-vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'folke/lsp-colors.nvim'
 Plug 'psf/black'

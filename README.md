@@ -6,6 +6,9 @@ wildmenu usage.
 
 ## Installation
 
+This requires my base vim configuration to work properly, so clone both:
+
 ```
-git clone --recursive git@github.com:renzmann/config-nvim ~/.config/nvim
+git clone git@github.com:renzmann/.vim ~/.vim
+git clone git@github.com:renzmann/config-nvim ~/.config/nvim
 ```

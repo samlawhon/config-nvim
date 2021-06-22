@@ -85,6 +85,3 @@ require("lsp-colors").setup {
   Hint = "#10B981"
 }
 EOF
-
-" Iceberg doesn't support these colors, so we use gruvbox for nvim
-colo gruvbox

@@ -13,6 +13,7 @@ let g:python3_host_prog = '~/.nvim.venv/bin/python'
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'folke/lsp-colors.nvim'
+Plug 'morhetz/gruvbox'
 Plug 'psf/black'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'tpope/vim-commentary'

@@ -71,11 +71,22 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "bashls" }
+local servers = { "pyright", "bashls", "julials" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 EOF
+
+autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+function! LspLocationList()
+  lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
+endfunction
+
+augroup lsp_loclist
+  autocmd!
+  autocmd BufWrite,BufEnter,InsertLeave * :call LspLocationList()
+augroup END
 
 " Diagnostics colors
 lua << EOF
@@ -86,3 +97,6 @@ require("lsp-colors").setup {
   Hint = "#10B981"
 }
 EOF
+
+" Activate LSP colors
+colo gruvbox

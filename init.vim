@@ -6,7 +6,6 @@ let &packpath=&runtimepath
 source ~/.vim/vimrc
 let g:python3_host_prog = '~/.nvim.venv/bin/python'
 
-
 " =============================================================================
 "                              Plugin Management
 " =============================================================================
@@ -16,6 +15,8 @@ Plug 'folke/lsp-colors.nvim'
 Plug 'morhetz/gruvbox'
 Plug 'psf/black'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
@@ -100,3 +101,4 @@ EOF
 
 " Activate LSP colors
 colo gruvbox
+

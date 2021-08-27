@@ -13,6 +13,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'folke/lsp-colors.nvim'
 Plug 'morhetz/gruvbox'
+Plug 'cocopon/iceberg.vim'
+Plug 'doums/darcula'
 Plug 'psf/black'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug '~/.fzf'
@@ -21,6 +23,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': 'TSUpdate'}
 call plug#end()
 
 " Overriding settings in my own plugins
@@ -100,5 +103,14 @@ require("lsp-colors").setup {
 EOF
 
 " Activate LSP colors
-colo gruvbox
+colo darcula
 
+" treesitter modules
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- Modules and its options go here
+  highlight = { enable = true },
+  incremental_selection = { enable = true },
+  textobjects = { enable = true },
+}
+EOF

@@ -13,6 +13,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'folke/lsp-colors.nvim'
 Plug 'morhetz/gruvbox'
+Plug 'cocopon/iceberg.vim'
+Plug 'doums/darcula'
 Plug 'psf/black'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug '~/.fzf'
@@ -21,6 +23,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': 'TSUpdate'}
+Plug 'nvim-lua/completion-nvim'
 call plug#end()
 
 " Overriding settings in my own plugins
@@ -44,7 +48,7 @@ local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   --Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -78,16 +82,18 @@ for _, lsp in ipairs(servers) do
 end
 EOF
 
+autocmd BufEnter * lua require'completion'.on_attach()
+
 autocmd Filetype julia setlocal omnifunc=v:lua.vim.lsp.omnifunc
 
 function! LspLocationList()
   lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 endfunction
 
-augroup lsp_loclist
-  autocmd!
-  autocmd BufWrite,BufEnter,InsertLeave * :call LspLocationList()
-augroup END
+" augroup lsp_loclist
+"   autocmd!
+"   autocmd BufWrite,BufEnter,InsertLeave * :call LspLocationList()
+" augroup END
 
 " Diagnostics colors
 lua << EOF
@@ -109,3 +115,15 @@ colo gruvbox
 let g:fzf_tags_command = 'ctags -R --exclude=.venv'
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+
+" =============================================================================
+"                             treesitter modules
+" =============================================================================
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- Modules and its options go here
+  highlight = { enable = true },
+  incremental_selection = { enable = true },
+  textobjects = { enable = true },
+}
+EOF

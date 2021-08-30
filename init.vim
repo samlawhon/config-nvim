@@ -102,3 +102,10 @@ EOF
 " Activate LSP colors
 colo gruvbox
 
+" =============================================================================
+"                             fzf customization
+" =============================================================================
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R --exclude=.venv'
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1

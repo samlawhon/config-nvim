@@ -82,7 +82,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Disable diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 EOF
 
 

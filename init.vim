@@ -1,3 +1,6 @@
+" Author: Robert A. Enzmann
+" License: Do anything you like.
+"
 " =============================================================================
 "                             Source ~/.vim/vimrc
 " =============================================================================
@@ -25,6 +28,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': 'TSUpdate'}
 Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
 call plug#end()
 
 " Overriding settings in my own plugins

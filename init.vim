@@ -20,16 +20,20 @@ Plug 'cocopon/iceberg.vim'
 Plug 'doums/darcula'
 Plug 'psf/black'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': 'TSUpdate'}
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'dag/vim-fish'
+Plug 'jpalardy/vim-slime'
 call plug#end()
 
 " Overriding settings in my own plugins
@@ -203,3 +207,11 @@ require'nvim-treesitter.configs'.setup {
   textobjects = { enable = true },
 }
 EOF
+
+
+" =============================================================================
+"                             slime customization
+" =============================================================================
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+

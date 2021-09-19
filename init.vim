@@ -29,7 +29,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-fugitive'
-Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat', 'do': 'TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat'}
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'dag/vim-fish'
@@ -40,7 +40,6 @@ call plug#end()
 " -------------------------------------
 " Don't pop up the quickfix menu automatically - we have the language server
 let g:py_nolint=1
-
 
 " =============================================================================
 "                        Language Server Configuration

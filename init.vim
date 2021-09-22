@@ -81,7 +81,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "bashls", "julials" }
+local servers = { "pyright", "bashls", "julials", "gopls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
@@ -183,6 +183,10 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 EOF
+
+" golang
+autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+" autocmd BufWritePre *.go lua goimports(1000)
 
 " =============================================================================
 "                             fzf customization

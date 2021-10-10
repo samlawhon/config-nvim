@@ -89,6 +89,8 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
+nvim_lsp["gopls"].setup { on_attach = on_attach, cmd = {'gopls', '--remote=auto'} }
+
 -- Disable diagnostics
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 EOF
@@ -198,6 +200,8 @@ autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
 let g:fzf_tags_command = 'ctags -R --exclude=.venv'
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+" Highlighting in preview
+let $FZF_DEFAULT_OPTS = "--layout=reverse --info=inline --preview 'batcat --color=always --style=header,grid --line-range :300 {}'"
 
 " =============================================================================
 "                             treesitter modules

@@ -84,22 +84,46 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "bashls", "julials", "yamlls", "gopls" }
+local servers = { "pyright", "bashls", "yamlls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
+-- gopls setup
 nvim_lsp["gopls"].setup { on_attach = on_attach, cmd = {'gopls', '--remote=auto'} }
 
--- Disable diagnostics
+-- julia setup
+nvim_lsp["julials"].setup {
+  on_attach = on_attach,
+  cmd = {
+    "julia",
+    "--startup-file=no",
+    "--history-file=no",
+    "-e", [[
+      using Pkg;
+      Pkg.instantiate()
+      using LanguageServer; using SymbolServer;
+      depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
+      project_path = dirname(something(Base.current_project(pwd()), Base.load_path_expand(LOAD_PATH[2])))
+      # Make sure that we only load packages from this environment specifically.
+      @info "Running language server" env=Base.load_path()[1] pwd() project_path depot_path
+      server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path);
+      server.runlinter = true;
+      run(server);
+    ]]
+  }
+}
+
+-- Uncomment to disable diagnostics
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 EOF
 
-
+" Uncomment to disable location list of diagnostics
 function! LspLocationList()
   lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
 endfunction
 
+" Uncomment to enable automatic opening of location list with LSP diagnostics
 " augroup lsp_loclist
 "   autocmd!
 "   autocmd BufWrite,BufEnter,InsertLeave * :call LspLocationList()

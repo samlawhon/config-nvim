@@ -90,9 +90,12 @@ for _, lsp in ipairs(servers) do
 end
 
 -- gopls setup
+-- Make sure that $GOPATH/bin is on $PATH after installing gopls for this to work
 nvim_lsp["gopls"].setup { on_attach = on_attach, cmd = {'gopls', '--remote=auto'} }
 
 -- julia setup
+-- Make sure to run julia and from the package manager prompt:
+-- ] add LanguageServer SymbolServer
 nvim_lsp["julials"].setup {
   on_attach = on_attach,
   cmd = {

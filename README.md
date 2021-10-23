@@ -9,6 +9,6 @@ wildmenu usage.
 This requires my base vim configuration to work properly, so clone both:
 
 ```
-git clone git@github.com:renzmann/.vim ~/.vim
-git clone git@github.com:renzmann/config-nvim ~/.config/nvim
+git clone git@github.com:samlawhon/.vim ~/.vim
+git clone git@github.com:samlawhon/config-nvim ~/.config/nvim
 ```
